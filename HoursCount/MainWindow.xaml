@@ -1,0 +1,132 @@
+﻿<Window x:Class="HoursCount.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:local="clr-namespace:HoursCount"
+        mc:Ignorable="d"
+       
+        Title="Наработка часов" Height="587.654" Width="936.624" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid RenderTransformOrigin="0.503,0.512">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="458*"/>
+            <ColumnDefinition Width="473*"/>
+        </Grid.ColumnDefinitions>
+        <DatePicker x:Name="dtpFrom" HorizontalAlignment="Left" Margin="302,160,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <DatePicker x:Name="dtpTo" HorizontalAlignment="Left" Margin="302,189,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblFrom" Content="От" HorizontalAlignment="Left" Margin="192,165,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblTo" Content="До" HorizontalAlignment="Left" Margin="192,187,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblDateFromTo" Content="Выбрать период" HorizontalAlignment="Left" Margin="192,134,0,0" VerticalAlignment="Top" Width="224" Grid.Column="1"/>
+        <Button x:Name="btnReport" Content="Отчет" HorizontalAlignment="Left" Margin="376,404,0,0" VerticalAlignment="Top" Width="76" Click="btnReport_Click" Grid.Column="1"/>
+        <Button x:Name="btnClose" Content="Закрыть" HorizontalAlignment="Left" Margin="377,513,0,0" VerticalAlignment="Top" Width="75" Click="btnClose_Click" Grid.Column="1"/>
+        <CheckBox x:Name="cbSpecificPumpChoose" Content="Отчет только по выбранным насосам" HorizontalAlignment="Left" Margin="213,10,0,0" VerticalAlignment="Top" Checked="cbSpecificPumpChoose_Checked" Unchecked="cbSpecificPumpChoose_Unchecked" Grid.Column="1"/>
+        <CheckBox x:Name="cbN1_1" Content="Н1/1" HorizontalAlignment="Left" Margin="213,34,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN1_2" Content="Н1/2" HorizontalAlignment="Left" Margin="213,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN2_1" Content="Н2/1" HorizontalAlignment="Left" Margin="261,34,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN2_2" Content="Н2/2" HorizontalAlignment="Left" Margin="261,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN2_3" Content="Н2/2" HorizontalAlignment="Left" Margin="261,94,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN3_1" Content="Н3/1" HorizontalAlignment="Left" Margin="309,34,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN3_2" Content="Н3/2" HorizontalAlignment="Left" Margin="309,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN3_3" Content="Н3/2" HorizontalAlignment="Left" Margin="309,94,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN4_1" Content="Н4/1" HorizontalAlignment="Left" Margin="357,34,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN4_2" Content="Н4/2" HorizontalAlignment="Left" Margin="357,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN4_3" Content="Н4/2" HorizontalAlignment="Left" Margin="357,94,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN5_1" Content="Н5/1" HorizontalAlignment="Left" Margin="405,34,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <CheckBox x:Name="cbN5_2" Content="Н5/2" HorizontalAlignment="Left" Margin="405,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TabControl x:Name="tcMain" HorizontalAlignment="Left" Height="535" Margin="4,0,0,0" VerticalAlignment="Top" Width="635" Grid.ColumnSpan="2">
+            <TabItem Header="Наработка часов">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="608*"/>
+                        <ColumnDefinition Width="17*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="-3,67,0,0" VerticalAlignment="Top" Height="441" Width="628" Grid.ColumnSpan="2" IsReadOnly="True"/>
+                    <CheckBox x:Name="cbCurrentShift" Content="За смену" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="CbCurrentShift_Checked"/>
+                    <CheckBox x:Name="cbPrevShift" Content="За предыдущую смену" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Checked="CbPrevShift_Checked"/>
+                    <CheckBox x:Name="cbDay" Content="За сутки" HorizontalAlignment="Left" Margin="233,13,0,0" VerticalAlignment="Top" Checked="CbDay_Checked"/>
+                    <Button x:Name="btnRefreshDataGrid" Content="Обновить" HorizontalAlignment="Left" Margin="544,42,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="BtnRefreshDataGrid_Click"/>
+                    <CheckBox x:Name="cbAll" Content="Все" HorizontalAlignment="Left" Margin="233,33,0,0" VerticalAlignment="Top" Checked="CbAll_Checked"/>
+                    <Button x:Name="btnEnableUSB" Content="EnableUSB" HorizontalAlignment="Left" Margin="441,39,0,0" VerticalAlignment="Top" Width="75" Click="BtnEnableUSB_Click"/>
+                    <Button x:Name="btnDisableUSB" Content="DisableUSB" HorizontalAlignment="Left" Margin="503,5,0,0" VerticalAlignment="Top" Width="75" Click="BtnDisableUSB_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Список отчетов">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgReportList" HorizontalAlignment="Left" AutoGenerateColumns="False" Height="497" Margin="10,0,0,0" VerticalAlignment="Top" Width="609" MouseDoubleClick="DgReportList_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{Binding}" Header="Название файла"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Помощь">
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="lblASU" Content="Инженеры АСУ ТП" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="322"/>
+                    <Label x:Name="lblFirstShift" Content="Бригада №1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="96"/>
+                    <TextBox x:Name="txbFirstShift" HorizontalAlignment="Left" Height="23" Margin="114,36,0,0" TextWrapping="Wrap" Text="Исаев Руслан Шамильевич" VerticalAlignment="Top" Width="513" IsEnabled="False"/>
+                    <Label x:Name="lblSecondShift" Content="Бригада №2" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="96"/>
+                    <TextBox x:Name="txbSecondShift" HorizontalAlignment="Left" Height="23" Margin="114,60,0,0" TextWrapping="Wrap" Text="Садовой Вячеслав Алексеевич" VerticalAlignment="Top" Width="513" IsEnabled="False"/>
+                    <Label x:Name="lblThirdShift" Content="Бригада №3" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" Width="96"/>
+                    <TextBox x:Name="txbThirdShift" HorizontalAlignment="Left" Height="23" Margin="114,84,0,0" TextWrapping="Wrap" Text="Падалка Иван Петрович" VerticalAlignment="Top" Width="513" IsEnabled="False"/>
+                    <Label x:Name="lblFourthShift" Content="Бригада №4" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="96"/>
+                    <TextBox x:Name="txbFourthShift" HorizontalAlignment="Left" Height="23" Margin="114,108,0,0" TextWrapping="Wrap" Text="Набойченко Евгений Алексеевич" VerticalAlignment="Top" Width="513" IsEnabled="False"/>
+                    <Label x:Name="lblDayTime" Content="Инженер АСУ ТП" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="104"/>
+                    <TextBox x:Name="txbDayTime" HorizontalAlignment="Left" Height="23" Margin="114,132,0,0" TextWrapping="Wrap" Text="Шишкин Сергей Викторович" VerticalAlignment="Top" Width="513" IsEnabled="False"/>
+                    <Label x:Name="lblPhone" Content="Телефон АСУ ТП" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" Width="101"/>
+                    <TextBox x:Name="txbPhone" HorizontalAlignment="Left" Height="23" Margin="114,156,0,0" TextWrapping="Wrap" Text="3346" VerticalAlignment="Top" Width="513" IsEnabled="False"/>
+                    <Button x:Name="btnManual" Content="Инструкция пользователя" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top" Width="614" Click="BtnManual_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Настройки">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="btnLogin" Content="Вход" HorizontalAlignment="Left" Height="22" Margin="500,10,0,0" VerticalAlignment="Top" Width="119" Click="BtnLogin_Click"/>
+                    <Button x:Name="btnLogout" Content="Выход" HorizontalAlignment="Left" Height="22" Margin="500,32,0,0" VerticalAlignment="Top" Width="119" Click="BtnLogout_Click"/>
+                    <Label x:Name="lblUserName" Content="Имя пользователя" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="114"/>
+                    <TextBox x:Name="txbUserName" HorizontalAlignment="Left" Height="23" Margin="129,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="lblUserPassword" Content="Пароль" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="114"/>
+                    <TextBox x:Name="txbUserPassword" HorizontalAlignment="Left" Height="23" Margin="129,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txbFolderReportPath" HorizontalAlignment="Left" Height="23" Margin="129,72,0,0" TextWrapping="Wrap" Text="C:\Users\LeadAdmin\Desktop\reports" VerticalAlignment="Top" Width="490" IsEnabled="False"/>
+                    <Label x:Name="lblFolderReportPath" Content="Папка с отчетами" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="114"/>
+                    <TextBox x:Name="txbReportTemplatePath" HorizontalAlignment="Left" Height="23" Margin="129,99,0,0" TextWrapping="Wrap" Text="C:\Users\LeadAdmin\Desktop\reports\pumpHours.docx" VerticalAlignment="Top" Width="490" IsEnabled="False"/>
+                    <Label x:Name="lblReportTemplatePath" Content="Шаблон отчета" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="114"/>
+                    <DataGrid x:Name="dgActivityLog" HorizontalAlignment="Left" Height="333" Margin="10,164,0,0" VerticalAlignment="Top" Width="609"/>
+                    <Label x:Name="lblActivityLog" Content="Журнал" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="609"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Редактировать записи" IsEnabled="False">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgAllRecords" HorizontalAlignment="Left" Height="259" Margin="10,10,0,0" VerticalAlignment="Top" Width="609" IsReadOnly="True" MouseDoubleClick="DgAllRecords_MouseDoubleClick"/>
+                    <Label x:Name="lblRecordID" Content="ID" HorizontalAlignment="Left" Margin="10,317,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txbRecordID" HorizontalAlignment="Left" Height="23" Margin="420,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199"/>
+                    <Label x:Name="lblRecordHour" Content="Часы" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txbRecordHours" HorizontalAlignment="Left" Height="23" Margin="420,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199"/>
+                    <Label x:Name="lblRecordMinute" Content="Минуты" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txbRecordMinutes" HorizontalAlignment="Left" Height="23" Margin="420,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199"/>
+                    <Label x:Name="lblRecordSeconds" Content="Секунды" HorizontalAlignment="Left" Margin="10,397,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txbRecordSeconds" HorizontalAlignment="Left" Height="23" Margin="420,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199"/>
+                    <Label x:Name="lblRecordPumpNumber" Content="Номер насоса" HorizontalAlignment="Left" Margin="10,424,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txbRecordPumpNumber" HorizontalAlignment="Left" Height="23" Margin="420,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199"/>
+                    <Label x:Name="lblRecordAddDate" Content="Дата добавления записи" HorizontalAlignment="Left" Margin="10,451,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txbRecordAddDate" HorizontalAlignment="Left" Height="23" Margin="420,454,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199"/>
+                    <Button x:Name="btnAddRecord" Content="Добавить запись" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Width="135" Click="BtnAddRecord_Click"/>
+                    <Button x:Name="btnEditRecord" Content="Редактировать запись" HorizontalAlignment="Left" Margin="150,274,0,0" VerticalAlignment="Top" Width="135" Click="BtnEditRecord_Click"/>
+                    <Button x:Name="btnDeleteRecord" Content="Удалить запись" HorizontalAlignment="Left" Margin="290,274,0,0" VerticalAlignment="Top" Width="135" Click="BtnDeleteRecord_Click"/>
+                    <DatePicker x:Name="dtpRecordAddDate" HorizontalAlignment="Left" Margin="234,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="181">
+                        <DatePicker.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.017"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </DatePicker.RenderTransform>
+                    </DatePicker>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <CheckBox x:Name="chbReportShift" Content="Отчет за текущую смену" HorizontalAlignment="Left" Margin="192,235,0,0" VerticalAlignment="Top" Unchecked="cbSpecificPumpChoose_Unchecked" Checked="ChbReportShift_Checked" Grid.Column="1"/>
+        <CheckBox x:Name="chbReportPrevShift" Content="Отчет за предыдущую смену" HorizontalAlignment="Left" Margin="192,256,0,0" VerticalAlignment="Top" Unchecked="cbSpecificPumpChoose_Unchecked" Checked="ChbReportPrevShift_Checked" Grid.Column="1"/>
+        <CheckBox x:Name="chbReportDay" Content="Отчет за  текущие сутки" HorizontalAlignment="Left" Margin="192,277,0,0" VerticalAlignment="Top" Unchecked="cbSpecificPumpChoose_Unchecked" Checked="ChbReportDay_Checked" Grid.Column="1"/>
+        <CheckBox x:Name="chbReportPrevDay" Content="Отчет за  предыдущие сутки" HorizontalAlignment="Left" Margin="192,298,0,0" VerticalAlignment="Top" Unchecked="cbSpecificPumpChoose_Unchecked" Checked="ChbReportPrevDay_Checked" Grid.Column="1"/>
+    </Grid>
+</Window>
