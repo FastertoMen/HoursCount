@@ -16,9 +16,9 @@ namespace HoursCount
             string connectionString;
 
             if (machineName != "LEAD")
-                connectionString = @"Server = " + machineName + @"\WINCC; database = WorkingHoursCount; Integrated Security = SSPI";
+                connectionString = @"Server = " + machineName + @"\WINCC; database = WorkingHours; Integrated Security = SSPI";
             else
-                connectionString = @"Server = LEADASU; database = WorkingHoursCount; Integrated Security = SSPI";
+                connectionString = @"Server = LEAD; database = WorkingHours; Integrated Security = SSPI";
 
             SqlConnection conn = new SqlConnection(connectionString);          
             conn.Open();            
@@ -37,10 +37,10 @@ namespace HoursCount
             string machineName = Environment.MachineName.ToString();
             string connectionString;
 
-            if (machineName != "LEADASU")
-                connectionString = @"Server = " + machineName + @"\WINCC; database = WorkingHoursCount; Integrated Security = SSPI";
+            if (machineName != "LEAD")
+                connectionString = @"Server = " + machineName + @"\WINCC; database = WorkingHours; Integrated Security = SSPI";
             else
-                connectionString = @"Server = LEADASU; database = WorkingHoursCount; Integrated Security = SSPI";
+                connectionString = @"Server = LEAD; database = WorkingHours; Integrated Security = SSPI";
 
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
