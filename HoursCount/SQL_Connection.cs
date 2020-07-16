@@ -15,7 +15,7 @@ namespace HoursCount
             string machineName = Environment.MachineName.ToString();
             string connectionString;
 
-            if (machineName != "LEADASU")
+            if (machineName != "LEAD")
                 connectionString = @"Server = " + machineName + @"\WINCC; database = WorkingHoursCount; Integrated Security = SSPI";
             else
                 connectionString = @"Server = LEADASU; database = WorkingHoursCount; Integrated Security = SSPI";
