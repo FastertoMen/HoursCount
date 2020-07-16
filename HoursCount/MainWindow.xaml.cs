@@ -24,7 +24,7 @@ namespace HoursCount
     public partial class MainWindow : Window
     {
         DataSet result = new DataSet();
-        //string repotsFolderPath = @"C:\Users\LeadAdmin\Desktop\reports";
+        
         string repotsFolderPath = @"C:\Users\" + Environment.UserName.ToString() + @"\Desktop\reports";
         bool login = false;        
         public MainWindow()
@@ -105,8 +105,7 @@ namespace HoursCount
                     }
                     else
                     {
-                        periodFrom = true;
-                        //result = SQL_Connection.timeSelect(dtpFrom.SelectedDate.Value.Year.ToString() + dtpFrom.SelectedDate.Value.Month.ToString() + dtpFrom.SelectedDate.Value.Day.ToString(), pumpArray[i].ToString(), "ASC", ">");
+                        periodFrom = true;                        
                     }
 
                     result = SQL_Connection.timeSelect(pumpArray[i].ToString(), "DESC", "BETWEEN '" + dateFrom + "' AND '" + dateTo);
@@ -119,8 +118,7 @@ namespace HoursCount
                     }
                     else
                     {
-                        periodTo = true;
-                        //result = SQL_Connection.timeSelect(dtpTo.SelectedDate.Value.Year.ToString() + dtpTo.SelectedDate.Value.Month.ToString() + dtpTo.SelectedDate.Value.Day.ToString(), pumpArray[i].ToString(), "DESC", "<");
+                        periodTo = true;                        
                     }
 
                     if (periodFrom && periodTo)
@@ -160,7 +158,7 @@ namespace HoursCount
         }
         private async void btnReport_Click(object sender, RoutedEventArgs e)
         {
-        //string templatePath = @"C:\Users\LeadAdmin\Desktop\pumpHours.docx", dateFrom = "", dateTo = "", timeFrom = "", timeTo = "";
+        
         
             string templatePath = @"C:\Users\" + Environment.UserName.ToString() + @"\Desktop\pumpHours.docx", dateFrom = "", dateTo = "", timeFrom = "", timeTo = "";
 
@@ -592,20 +590,6 @@ namespace HoursCount
             cbCurrentShift.IsChecked = false;
             cbDay.IsChecked = false;
             cbPrevShift.IsChecked = false;
-        }      
-
-        private void BtnDisableUSB_Click(object sender, RoutedEventArgs e)
-        {
-            const string keyname = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USBSTOR";
-
-            Microsoft.Win32.Registry.SetValue(keyname, "Start", 4);
-        }
-
-        private void BtnEnableUSB_Click(object sender, RoutedEventArgs e)
-        {
-            const string keyname = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USBSTOR";
-
-            Microsoft.Win32.Registry.SetValue(keyname, "Start", 3);
-        }
+        }  
     }
 }
